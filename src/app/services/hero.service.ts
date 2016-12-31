@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {PlatformLocation } from '@angular/common';
+
 
 import { Hero } from '../models/hero';
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'app/heroes';  // URL to web api
+  private heroesUrl;  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, platformLocation: PlatformLocation) {
+    this.heroesUrl = platformLocation.getBaseHrefFromDOM() + 'api/heroes/';
+  }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get('/api/heroes')
+    return this.http.get(this.heroesUrl)
       .map((res: Response) => res.json().data);
   }
 
   getHero(id): Observable<Hero> {
-    return this.http.get('/api/heroes/' + id)
+    return this.http.get(this.heroesUrl + id)
       .map((res: Response) => res.json().data);
   }
 
@@ -31,7 +35,7 @@ export class HeroService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.heroesUrl}/${hero.id}`;
+    let url = `${this.heroesUrl}${hero.id}`;
 
     return this.http
       .delete(url, { headers: headers })
@@ -54,7 +58,7 @@ export class HeroService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.heroesUrl}/${hero.id}`;
+    let url = `${this.heroesUrl}${hero.id}`;
 
     return this.http
       .put(url, JSON.stringify(hero), { headers: headers })
