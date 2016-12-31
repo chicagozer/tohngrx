@@ -16,7 +16,7 @@ import {HeroActions} from './actions';
   `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Tour of Heroes';
   constructor(
     private store: Store<AppState>,

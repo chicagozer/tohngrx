@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
 
@@ -12,7 +11,7 @@ import {HeroActions} from './actions';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnInit, OnDestroy {
 
   hero: Hero;
   idSub: Subscription;
@@ -50,7 +49,7 @@ export class HeroDetailComponent implements OnInit {
 
 
   save(hero: Hero): void {
-    if (hero.id === 0) {
+    if (hero.id === undefined) {
       this.store.dispatch(this.heroActions.addHero(hero));
     } else {
       this.store.dispatch(this.heroActions.saveHero(hero));

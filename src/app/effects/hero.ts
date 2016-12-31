@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Effect, Actions} from '@ngrx/effects';
 
-import {AppState} from '../reducers';
 import {HeroActions} from '../actions';
 import {HeroService} from '../services';
 import {Hero} from '../models';
@@ -22,24 +21,24 @@ export class HeroEffects {
     @Effect() getHero$ = this.update$.ofType(HeroActions.GET_HERO)
       .map(action => action.payload)
       .switchMap(id => this.svc.getHero(id))
-      .map(hero => this.heroActions.getHeroSuccess(hero));
+      .map((hero: Hero) => this.heroActions.getHeroSuccess(hero));
 
 
     @Effect() saveHero$ = this.update$
         .ofType(HeroActions.SAVE_HERO)
         .map(action => action.payload)
-        .switchMap((hero : Hero) => this.svc.save(hero))
+        .switchMap((hero: Hero) => this.svc.save(hero))
         .map(hero => this.heroActions.saveHeroSuccess(hero));
 
     @Effect() addHero$ = this.update$
         .ofType(HeroActions.ADD_HERO)
         .map(action => action.payload)
-        .switchMap(hero => this.svc.save(hero))
-        .map(hero => this.heroActions.addHeroSuccess(hero));
+        .switchMap((hero: Hero) => this.svc.save(hero))
+        .map((hero: Hero) => this.heroActions.addHeroSuccess(hero));
 
     @Effect() deleteHero$ = this.update$
         .ofType(HeroActions.DELETE_HERO)
         .map(action => action.payload)
-        .switchMap(hero => this.svc.delete(hero))
-        .map(hero => this.heroActions.deleteHeroSuccess(hero));
+        .switchMap((hero: Hero) => this.svc.delete(hero))
+        .map((hero: Hero) => this.heroActions.deleteHeroSuccess(hero));
 }

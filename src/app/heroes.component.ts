@@ -21,8 +21,7 @@ export class HeroesComponent  {
   constructor(
     private router: Router,
     private store: Store<AppState>,
-    private heroActions: HeroActions)
-  {
+    private heroActions: HeroActions) {
     this.heroes = store.select('heroes');
   }
 

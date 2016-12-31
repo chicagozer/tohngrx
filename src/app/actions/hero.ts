@@ -6,21 +6,30 @@ import {Hero} from '../models';
 @Injectable()
 export class HeroActions {
     static LOAD_HEROES = '[Hero] Load Heroes';
-    loadHeroes(): Action {
+  static LOAD_HEROES_SUCCESS = '[Hero] Load Heroes Success';
+  static GET_HERO = '[Hero] Get Hero';
+  static GET_HERO_SUCCESS = '[Hero] Get Hero Success';
+  static RESET_BLANK_HERO = '[Hero] Reset Blank Hero';
+  static SAVE_HERO = '[Hero] Save Hero';
+  static ADD_HERO = '[Hero] Add Hero';
+  static SAVE_HERO_SUCCESS = '[Hero] Save Hero Success';
+  static ADD_HERO_SUCCESS = '[Hero] Add Hero Success';
+  static DELETE_HERO = '[Hero] Delete Hero';
+  static DELETE_HERO_SUCCESS = '[Hero] Delete Hero Success';
+
+  loadHeroes(): Action {
         return {
             type: HeroActions.LOAD_HEROES
         };
     }
 
-    static LOAD_HEROES_SUCCESS = '[Hero] Load Heroes Success';
-    loadHeroesSuccess(heroes): Action {
+    loadHeroesSuccess(heroes: Hero[]): Action {
         return {
             type: HeroActions.LOAD_HEROES_SUCCESS,
             payload: heroes
         };
     }
 
-    static GET_HERO = '[Hero] Get Hero';
     getHero(id): Action {
         return {
             type: HeroActions.GET_HERO,
@@ -28,63 +37,55 @@ export class HeroActions {
         };
     }
 
-    static GET_HERO_SUCCESS = '[Hero] Get Hero Success';
-    getHeroSuccess(hero): Action {
+    getHeroSuccess(hero: Hero): Action {
         return {
             type: HeroActions.GET_HERO_SUCCESS,
             payload: hero
         };
     }
 
-    static RESET_BLANK_HERO = '[Hero] Reset Blank Hero';
     resetBlankHero(): Action {
         return {
             type: HeroActions.RESET_BLANK_HERO
         };
     }
 
-    static SAVE_HERO = '[Hero] Save Hero';
-    saveHero(hero): Action {
+    saveHero(hero: Hero): Action {
         return {
             type: HeroActions.SAVE_HERO,
             payload: hero
         };
     }
 
-    static SAVE_HERO_SUCCESS = '[Hero] Save Hero Success';
-    saveHeroSuccess(hero): Action {
+    saveHeroSuccess(hero: Hero): Action {
         return {
             type: HeroActions.SAVE_HERO_SUCCESS,
             payload: hero
         };
     }
 
-    static ADD_HERO = '[Hero] Add Hero';
-    addHero(hero): Action {
+    addHero(hero: Hero): Action {
         return {
             type: HeroActions.ADD_HERO,
             payload: hero
         };
     }
 
-    static ADD_HERO_SUCCESS = '[Hero] Add Hero Success';
-    addHeroSuccess(hero): Action {
+    addHeroSuccess(hero: Hero): Action {
         return {
             type: HeroActions.ADD_HERO_SUCCESS,
             payload: hero
         };
     }
 
-    static DELETE_HERO = '[Hero] Delete Hero';
-    deleteHero(hero): Action {
+    deleteHero(hero: Hero): Action {
         return {
             type: HeroActions.DELETE_HERO,
             payload: hero
         };
     }
 
-    static DELETE_HERO_SUCCESS = '[Hero] Delete Hero Success';
-    deleteHeroSuccess(hero): Action {
+    deleteHeroSuccess(hero: Hero): Action {
         return {
             type: HeroActions.DELETE_HERO_SUCCESS,
             payload: hero

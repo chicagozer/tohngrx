@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
-import {Hero} from "./models/hero";
-import {Observable} from "rxjs/Observable";
-import {Store} from "@ngrx/store";
-import {AppState} from "./reducers";
-import {HeroActions} from "./actions";
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {Hero} from './models/hero';
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {AppState} from './reducers';
+import {HeroActions} from './actions';
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',

@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { HeroService } from './services/hero.service';
 import { HeroSearchComponent } from './hero-search.component';
-import {Store, StoreModule} from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 import reducer from './reducers';
 import {HeroActions} from './actions';
 import {EffectsModule} from '@ngrx/effects';
@@ -35,7 +35,7 @@ import {HeroEffects} from './effects';
     routedComponents
   ],
   providers: [
-    HeroActions,HeroService
+    HeroActions, HeroService
   ],
   bootstrap: [AppComponent]
 })
