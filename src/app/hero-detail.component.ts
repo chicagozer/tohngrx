@@ -3,17 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
-
+import { Observable } from 'rxjs/Observable';
 import { Hero } from './models/hero';
 import {HeroActions} from './actions';
 @Component({
   selector: 'my-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css']
+  template: require('./hero-detail.component.html')
 })
 export class HeroDetailComponent implements OnInit, OnDestroy {
 
-  hero: Hero;
+  hero: Observable<Hero>;
   idSub: Subscription;
   @Output() close = new EventEmitter();
   error: any;
@@ -24,9 +23,7 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private heroActions: HeroActions) {
 
-    // we have to remove the observable to get the template to work
-    // probably should go to a form the way rxheroes does it
-    store.select('hero').subscribe((h: Hero) => this.hero = h);
+    this.hero = store.select('hero');
   }
 
   ngOnInit(): void {

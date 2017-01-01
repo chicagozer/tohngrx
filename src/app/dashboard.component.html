@@ -1,9 +1,7 @@
 <h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <div *ngFor="let hero of (heroes | async) | slice:0:4" (click)="gotoDetail(hero)" class="col-1-4">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
-    </div>
+<md-grid-list gutterSize="12px" cols="4" [style.background]="'rgb(0,120,215)'">
+  <div *ngFor="let hero of (heroes | async) | slice:0:4" (click)="gotoDetail(hero)">
+  <md-grid-tile>{{hero.name}}</md-grid-tile>
   </div>
-</div>
+</md-grid-list>
 <hero-search></hero-search>

@@ -62,7 +62,7 @@ export class HeroService {
 
     return this.http
       .put(url, JSON.stringify(hero), { headers: headers })
-      .map(res => res.json().data);
+      .map(() => hero);
   }
 
 

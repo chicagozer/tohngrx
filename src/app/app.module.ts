@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { MaterialModule } from '@angular/material';
 
 import './rxjs-extensions';
 import { AppComponent } from './app.component';
@@ -17,9 +18,11 @@ import reducer from './reducers';
 import {HeroActions} from './actions';
 import {EffectsModule} from '@ngrx/effects';
 import {HeroEffects} from './effects';
+import {HeroFormComponent} from "./hero-form.component";
 
 @NgModule({
   imports: [
+    MaterialModule.forRoot(),
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -32,6 +35,7 @@ import {HeroEffects} from './effects';
   declarations: [
     AppComponent,
     HeroSearchComponent,
+    HeroFormComponent,
     routedComponents
   ],
   providers: [

@@ -9,6 +9,11 @@
   padding: 0;
   width: 15em;
 }
+.heroes button.md-warn {
+  float: right;
+}
+
+
 .heroes li {
   cursor: pointer;
   position: relative;
@@ -16,7 +21,7 @@
   background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
-  height: 1.6em;
+  height: 2.6em;
   border-radius: 4px;
 }
 .heroes li:hover {
