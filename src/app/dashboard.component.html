@@ -1,7 +1,12 @@
-<h3>Top Heroes</h3>
-<md-grid-list gutterSize="12px" cols="4" [style.background]="'rgb(0,120,215)'">
-  <div *ngFor="let hero of (heroes | async) | slice:0:4" (click)="gotoDetail(hero)">
-  <md-grid-tile>{{hero.name}}</md-grid-tile>
-  </div>
-</md-grid-list>
+
+  <md-card>
+  <md-card-title>Top Heroes</md-card-title>
+  <md-card-content>
+    <md-grid-list gutterSize="4px" [rowHeight]="basicRowHeight" cols="4" [style.background]="'rgb(0,120,215)'">
+      <div *ngFor="let hero of (heroes | async) | slice:0:4" (click)="gotoDetail(hero)">
+        <md-grid-tile>{{hero.name}}</md-grid-tile>
+      </div>
+    </md-grid-list>
+  </md-card-content>
+</md-card>
 <hero-search></hero-search>

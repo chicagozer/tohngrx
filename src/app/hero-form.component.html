@@ -1,8 +1,8 @@
-<div *ngIf="hero">
+
   <form (ngSubmit)="save.emit(hero)" #heroForm="ngForm">
   <h2>{{hero.name}} details!</h2>
   <md-input-container style="width: 100%">
-    <input md-input  disable value="{{hero.id}}" placeholder="id" name="id"/>
+    <input md-input  disabled value="{{hero.id}}" placeholder="id" name="id"/>
   </md-input-container>
   <md-input-container style="width: 100%">
     <input md-input [(ngModel)]="hero.name" placeholder="name" name="name"/>
@@ -10,4 +10,4 @@
   <button md-raised-button type="button" (click)="goBack.emit()">Back</button>
   <button md-raised-button type="submit">Save</button>
   </form>
-</div>
+
