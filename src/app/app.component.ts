@@ -5,15 +5,7 @@ import {AppState} from './reducers';
 import {HeroActions} from './actions';
 @Component({
   selector: 'my-app',
-  template: `
-    <h1>{{title}}</h1>
-    <div class="header-bar"></div>
-    <nav>
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
-    </nav>
-    <router-outlet></router-outlet>
-  `,
+  template:  require('./app.component.html'),
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
