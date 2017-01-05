@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import {Store} from '@ngrx/store';
+import {AppState} from './reducers';
+import {HeroActions} from './actions';
 
 import { HeroSearchService } from './services/hero-search.service';
 import { Hero } from './models/hero';
@@ -24,6 +27,8 @@ export class HeroSearchComponent implements OnInit {
 
   constructor(
     private heroSearchService: HeroSearchService,
+    private store: Store<AppState>,
+    private heroActions: HeroActions,
     private router: Router) { }
 
   search(term: string): void {
@@ -32,12 +37,13 @@ export class HeroSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroes = this.searchTerms
-      .debounceTime(300)        // wait for 300ms pause in events
+
+      this.heroes = this.searchTerms
+      .debounceTime(100)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time
         // return the http search observable
-        ? this.heroSearchService.search(term)
+        ? this.store.dispatch(this.heroActions.loadHeroes(term)) || this.heroSearchService.search(term)
         // or the observable of empty heroes if no search term
         : Observable.of<Hero[]>([]))
       .catch(error => {

@@ -12,6 +12,7 @@ import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { HeroService } from './services/hero.service';
+import { HeroSearchService } from './services/hero-search.service';
 import { HeroSearchComponent } from './hero-search.component';
 import {StoreModule} from '@ngrx/store';
 import reducer from './reducers';
@@ -39,7 +40,7 @@ import {HeroFormComponent} from "./hero-form.component";
     routedComponents
   ],
   providers: [
-    HeroActions, HeroService
+    HeroActions, HeroService, HeroSearchService
   ],
   bootstrap: [AppComponent]
 })

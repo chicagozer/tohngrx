@@ -9,13 +9,13 @@ import {HeroActions} from './actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Tour of Heroes';
+  title = 'Tour of Dealers';
   constructor(
     private store: Store<AppState>,
     private heroActions: HeroActions
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(this.heroActions.loadHeroes());
+    this.store.dispatch(this.heroActions.loadHeroes("*"));
   }
 }

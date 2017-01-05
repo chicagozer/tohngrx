@@ -5,21 +5,22 @@ import {Hero} from '../models';
 
 @Injectable()
 export class HeroActions {
-    static LOAD_HEROES = '[Hero] Load Heroes';
-  static LOAD_HEROES_SUCCESS = '[Hero] Load Heroes Success';
-  static GET_HERO = '[Hero] Get Hero';
-  static GET_HERO_SUCCESS = '[Hero] Get Hero Success';
-  static RESET_BLANK_HERO = '[Hero] Reset Blank Hero';
-  static SAVE_HERO = '[Hero] Save Hero';
-  static ADD_HERO = '[Hero] Add Hero';
-  static SAVE_HERO_SUCCESS = '[Hero] Save Hero Success';
-  static ADD_HERO_SUCCESS = '[Hero] Add Hero Success';
-  static DELETE_HERO = '[Hero] Delete Hero';
-  static DELETE_HERO_SUCCESS = '[Hero] Delete Hero Success';
+    static LOAD_HEROES = '[Dealer] Load Dealers';
+  static LOAD_HEROES_SUCCESS = '[Dealer] Load Dealers Success';
+  static GET_HERO = '[Dealer] Get Dealer';
+  static GET_HERO_SUCCESS = '[Dealer] Get Dealer Success';
+  static RESET_BLANK_HERO = '[Dealer] Reset Blank Dealer';
+  static SAVE_HERO = '[Dealer] Save Dealer';
+  static ADD_HERO = '[Dealer] Add Dealer';
+  static SAVE_HERO_SUCCESS = '[Dealer] Save Dealer Success';
+  static ADD_HERO_SUCCESS = '[Dealer] Add Dealer Success';
+  static DELETE_HERO = '[Dealer] Delete Dealer';
+  static DELETE_HERO_SUCCESS = '[Dealer] Delete Dealer Success';
 
-  loadHeroes(): Action {
+  loadHeroes(search: String): Action {
         return {
-            type: HeroActions.LOAD_HEROES
+            type: HeroActions.LOAD_HEROES,
+            payload: search
         };
     }
 
@@ -49,6 +50,7 @@ export class HeroActions {
             type: HeroActions.RESET_BLANK_HERO
         };
     }
+
 
     saveHero(hero: Hero): Action {
         return {

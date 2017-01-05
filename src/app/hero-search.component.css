@@ -14,3 +14,7 @@
   height: 20px;
   border: 1px solid lightgray;
 }
+
+md-grid-tile {
+  background: #eee;
+}

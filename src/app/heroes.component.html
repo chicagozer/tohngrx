@@ -1,5 +1,5 @@
 <md-card>
-    <md-card-title>My Heroes</md-card-title>
+    <md-card-title>My Dealers</md-card-title>
     <md-card-content>
         <ul class="heroes">
             <li *ngFor="let hero of (heroes | async)" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
