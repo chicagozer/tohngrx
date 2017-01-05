@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(this.heroActions.loadHeroes('*'));
+    //this.store.dispatch(this.heroActions.loadHeroes(''));
   }
 }

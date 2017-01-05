@@ -6,6 +6,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/observable/from';
 import {Client, SearchResponse} from 'elasticsearch';
 import {Hero} from '../models/hero';
 import {Dealer} from '../models';
@@ -45,10 +46,12 @@ export class HeroSearchService {
 
     Object.defineProperty(p, 'Symbol.toStringTag', {value: 'Promise'});
 
+    // this is a bit weird. We are using Observable map but also hits.hits.map to transform internal array members to Heroes
     return Observable.fromPromise(p as Promise<SearchResponse<Dealer>>).map((body: SearchResponse<Dealer>) => body.hits.hits.map((x) => ({
       id: x._source.code,
       name: x._source.name
     })));
+
 
     /*
      return this.http

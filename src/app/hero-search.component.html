@@ -10,12 +10,15 @@
             </div>
             -->
         </div>
-
-            <md-grid-list gutterSize="10px" rowHeight="120px" cols="4" >
+    </md-card-content>
+</md-card>
+<md-card>
+    <md-card-content>
+        <md-grid-list  gutterSize="10px" rowHeight="120px" cols="4" >
                 <!--  | slice:0:8 -->
                 <div *ngFor="let hero of (heroes | async)" (click)="gotoDetail(hero)">
 
-                    <md-grid-tile>
+                    <md-grid-tile [style.background]="'lightblue'">
                         <md-grid-tile-header>{{hero.id}}</md-grid-tile-header>
                         {{hero.name}}
                     </md-grid-tile>
