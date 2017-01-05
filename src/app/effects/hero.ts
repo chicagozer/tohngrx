@@ -16,7 +16,7 @@ export class HeroEffects {
     @Effect() loadHeroes$ = this.update$
         .ofType(HeroActions.LOAD_HEROES)
         .map(action => action.payload)
-        .switchMap((term: String) => this.svc.getHeroes(term))
+        .switchMap((term: string) => this.svc.getHeroes(term))
         .map(heroes => this.heroActions.loadHeroesSuccess(heroes));
 
     @Effect() getHero$ = this.update$.ofType(HeroActions.GET_HERO)

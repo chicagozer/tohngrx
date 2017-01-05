@@ -17,7 +17,7 @@ export class HeroActions {
   static DELETE_HERO = '[Dealer] Delete Dealer';
   static DELETE_HERO_SUCCESS = '[Dealer] Delete Dealer Success';
 
-  loadHeroes(search: String): Action {
+  loadHeroes(search: string): Action {
         return {
             type: HeroActions.LOAD_HEROES,
             payload: search
