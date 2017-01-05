@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Hero } from './models/hero';
 import {HeroActions} from './actions';
 @Component({
-  selector: 'my-hero-detail',
+  selector: 'app-hero-detail',
   template: require('./hero-detail.component.html')
 })
 export class HeroDetailComponent implements OnInit, OnDestroy {

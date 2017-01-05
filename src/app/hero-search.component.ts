@@ -5,6 +5,7 @@ import {Subject} from 'rxjs/Subject';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
 import {HeroActions} from './actions';
+import {Dealer} from './models';
 
 import {HeroSearchService} from './services/hero-search.service';
 import {Hero} from './models/hero';
@@ -16,7 +17,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-    selector: 'hero-search',
+    selector: 'app-hero-search',
     templateUrl: './hero-search.component.html',
     styleUrls: ['./hero-search.component.css'],
     providers: [HeroSearchService]
@@ -24,7 +25,7 @@ import 'rxjs/add/operator/switchMap';
 export class HeroSearchComponent implements OnInit {
     heroes: Observable<Hero[]>;
     private searchTerms = new Subject<string>();
-    private term: string;
+    public term: string;
 
     constructor(private heroSearchService: HeroSearchService,
                 private store: Store<AppState>,

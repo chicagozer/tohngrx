@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {Hero} from './models/hero';
+import {Hero, Dealer} from './models';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
 import {HeroActions} from './actions';
 @Component({
-  selector: 'my-dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

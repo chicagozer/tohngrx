@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
 import {HeroActions} from './actions';
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   template:  require('./app.component.html'),
   styleUrls: ['./app.component.css']
 })
@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(this.heroActions.loadHeroes("*"));
+    this.store.dispatch(this.heroActions.loadHeroes('*'));
   }
 }

@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
-    selector: 'my-hero-form',
+    selector: 'app-hero-form',
     template: require('./hero-form.component.html'),
     styles: [require('./hero-form.component.css')]
 })

@@ -8,7 +8,7 @@ import {HeroActions} from './actions';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-  selector: 'my-heroes',
+  selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })

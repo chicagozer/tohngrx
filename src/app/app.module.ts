@@ -19,7 +19,7 @@ import reducer from './reducers';
 import {HeroActions} from './actions';
 import {EffectsModule} from '@ngrx/effects';
 import {HeroEffects} from './effects';
-import {HeroFormComponent} from "./hero-form.component";
+import {HeroFormComponent} from './hero-form.component';
 
 @NgModule({
   imports: [
