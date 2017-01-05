@@ -18,7 +18,7 @@ export class HeroSearchService {
     constructor(private http: Http) {
 
         this.client = new Client({
-            host: 'http://kibana.myxtime.us',
+            host: 'https://search-xtime-rztulzvbnfnzqismf3xqa7q6sy.us-west-1.es.amazonaws.com',
             log: 'info'
         });
     }
