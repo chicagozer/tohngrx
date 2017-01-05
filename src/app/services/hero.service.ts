@@ -14,9 +14,9 @@ export class HeroService {
     this.heroesUrl = platformLocation.getBaseHrefFromDOM() + 'api/heroes/';
   }
 
-  getHeroes(term: String): Observable<Hero[]> {
+  getHeroes(term: string): Observable<Hero[]> {
     //return this.http.get(this.heroesUrl).map((res: Response) => res.json().data);
-      return this.heroSearchService.query(`name:${term}`);
+      return this.heroSearchService.search(term);
   }
 
   getHero(id): Observable<Hero> {

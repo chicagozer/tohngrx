@@ -11,7 +11,7 @@
         </ul>
 
         <div class="error" *ngIf="error">{{error}}</div>
-        <button md-raised-button (click)="addHero()">Add New Hero</button>
+        <button md-raised-button disabled (click)="addHero()">Add New Dealer</button>
 
         <div *ngIf="addingHero">
             <my-hero-detail (close)="close($event)"></my-hero-detail>
