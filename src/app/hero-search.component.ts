@@ -40,9 +40,10 @@ export class HeroSearchComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    this.searchTerms
+        this.searchTerms
             .debounceTime(100)        // wait for 300ms pause in events
-            .distinctUntilChanged()   // ignore if next search term is same as previous
+            .distinctUntilChanged()
+            .filter(term => term.length > 0)
             .subscribe(term => this.store.dispatch(this.heroActions.loadHeroes(term)));
     }
 
