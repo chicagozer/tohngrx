@@ -4,11 +4,11 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
-import {HeroActions} from './actions';
+import {DealerActions} from './actions';
 import {Dealer} from './models';
 
-import {HeroSearchService} from './services/hero-search.service';
-import {Hero} from './models/hero';
+import {DealerSearchService} from './services/dealer-search.service';
+
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
@@ -17,22 +17,22 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-    selector: 'app-hero-search',
-    templateUrl: './hero-search.component.html',
-    styleUrls: ['./hero-search.component.css'],
-    providers: [HeroSearchService]
+    selector: 'app-dealer-search',
+    templateUrl: './dealer-search.component.html',
+    styleUrls: ['./dealer-search.component.css'],
+    providers: [DealerSearchService]
 })
-export class HeroSearchComponent implements OnInit {
-    heroes: Observable<Hero[]>;
+export class DealerSearchComponent implements OnInit {
+    dealers: Observable<Dealer[]>;
     private searchTerms = new Subject<string>();
     public term: string;
 
-    constructor(private heroSearchService: HeroSearchService,
+    constructor(private dealerSearchService: DealerSearchService,
                 private store: Store<AppState>,
-                private heroActions: HeroActions,
+                private dealerActions: DealerActions,
                 private router: Router) {
 
-        this.heroes = store.select('heroes');
+        this.dealers = store.select('dealers');
     }
 
     search(term: string): void {
@@ -45,11 +45,11 @@ export class HeroSearchComponent implements OnInit {
             .debounceTime(100)        // wait for 300ms pause in events
             .distinctUntilChanged()
             .filter(term => term.length > 0)
-            .subscribe(term => this.store.dispatch(this.heroActions.loadHeroes(term)));
+            .subscribe(term => this.store.dispatch(this.dealerActions.loadDealers(term)));
     }
 
-    gotoDetail(hero: Hero): void {
-        let link = ['/detail', hero.id];
+    gotoDetail(dealer: Dealer): void {
+        let link = ['/detail', dealer.code];
         this.router.navigate(link);
     }
 }

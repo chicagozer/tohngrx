@@ -1,9 +1,9 @@
-import {HeroEffects} from './hero';
+import {DealerEffects} from './dealer';
 
 export {
-    HeroEffects
+    DealerEffects
 };
 
 export default [
-    HeroEffects
+    DealerEffects
 ];

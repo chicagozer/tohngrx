@@ -25,46 +25,46 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface Part {
     
 
-    agentType?: string;
+    /**
+     * Part cost
+     */
+    cost?: number;
 
-    code?: string;
+    /**
+     * Part description maxLength = 255
+     */
+    description?: string;
 
-    countryCode?: string;
+    /**
+     * Labor op sequence number maxLength = 128
+     */
+    lopSequenceNumber?: string;
 
-    currencyCode?: string;
+    /**
+     * Part number maxLength = 128
+     */
+    partNumber?: string;
 
-    defaultMakeCode?: string;
+    /**
+     * Part sequence number maxLength = 128
+     */
+    partSequenceNumber?: string;
 
-    defaultStore?: string;
+    /**
+     * Part quantity maxLength = 32
+     */
+    quantity?: number;
 
-    dmsType?: string;
+    /**
+     * Ro id associated with part maxLength = 128
+     */
+    roId?: string;
 
-    id?: number;
-
-    integrationAllowed?: boolean;
-
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    /**
+     * Part sale price
+     */
+    salePrice?: number;
 }

@@ -25,46 +25,26 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface Timestamp {
     
 
-    agentType?: string;
+    date?: number;
 
-    code?: string;
+    day?: number;
 
-    countryCode?: string;
+    hours?: number;
 
-    currencyCode?: string;
+    minutes?: number;
 
-    defaultMakeCode?: string;
+    month?: number;
 
-    defaultStore?: string;
+    nanos?: number;
 
-    dmsType?: string;
+    seconds?: number;
 
-    id?: number;
+    time?: number;
 
-    integrationAllowed?: boolean;
+    timezoneOffset?: number;
 
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    year?: number;
 }

@@ -1,9 +1,9 @@
-import {HeroActions} from './hero';
+import {DealerActions} from './dealer';
 
 export {
-    HeroActions
+    DealerActions
 };
 
 export default [
-    HeroActions
+    DealerActions
 ];

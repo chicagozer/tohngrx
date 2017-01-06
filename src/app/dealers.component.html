@@ -1,12 +1,12 @@
 <md-card>
     <md-card-title>My Dealers</md-card-title>
     <md-card-content>
-        <ul class="heroes">
-            <li *ngFor="let hero of (heroes | async)" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-    <span class="hero-element">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <ul class="dealers">
+            <li *ngFor="let dealer of (dealers | async)" (click)="onSelect(dealer)" [class.selected]="dealer === selectedHero">
+    <span class="dealer-element">
+      <span class="badge">{{dealer.code}}</span> {{dealer.name}}
     </span>
-                <button md-button color="warn" (click)="deleteHero(hero, $event)">Delete</button>
+                <button md-button color="warn" (click)="deleteHero(dealer, $event)">Delete</button>
             </li>
         </ul>
 
@@ -14,12 +14,12 @@
         <button md-raised-button disabled (click)="addHero()">Add New Dealer</button>
 
         <div *ngIf="addingHero">
-            <app-hero-detail (close)="close($event)"></app-hero-detail>
+            <app-dealer-detail (close)="close($event)"></app-dealer-detail>
         </div>
 
         <div *ngIf="selectedHero">
             <h2>
-                {{selectedHero.name | uppercase}} is my hero
+                {{selectedHero.name | uppercase}} is my dealer
             </h2>
             <button md-raised-button (click)="gotoDetail()">View Details</button>
         </div>

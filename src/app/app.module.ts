@@ -11,15 +11,15 @@ import { MaterialModule } from '@angular/material';
 import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
-import { HeroService } from './services/hero.service';
-import { HeroSearchService } from './services/hero-search.service';
-import { HeroSearchComponent } from './hero-search.component';
+import { DealerService } from './services/dealer.service';
+import { DealerSearchService } from './services/dealer-search.service';
+import { DealerSearchComponent } from './dealer-search.component';
 import {StoreModule} from '@ngrx/store';
 import reducer from './reducers';
-import {HeroActions} from './actions';
+import {DealerActions} from './actions';
 import {EffectsModule} from '@ngrx/effects';
-import {HeroEffects} from './effects';
-import {HeroFormComponent} from './hero-form.component';
+import {DealerEffects} from './effects';
+import {DealerFormComponent} from './dealer-form.component';
 
 @NgModule({
   imports: [
@@ -30,17 +30,17 @@ import {HeroFormComponent} from './hero-form.component';
     HttpModule,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(HeroEffects),
+    EffectsModule.run(DealerEffects),
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })
   ],
   declarations: [
     AppComponent,
-    HeroSearchComponent,
-    HeroFormComponent,
+    DealerSearchComponent,
+    DealerFormComponent,
     routedComponents
   ],
   providers: [
-    HeroActions, HeroService, HeroSearchService
+    DealerActions, DealerService, DealerSearchService
   ],
   bootstrap: [AppComponent]
 })

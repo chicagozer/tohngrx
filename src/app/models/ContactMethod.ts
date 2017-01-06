@@ -25,46 +25,20 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface ContactMethod {
     
 
-    agentType?: string;
+    /**
+     * Type of contact
+     */
+    name?: ContactMethod.NameEnum;
+}
+export namespace ContactMethod {
 
-    code?: string;
-
-    countryCode?: string;
-
-    currencyCode?: string;
-
-    defaultMakeCode?: string;
-
-    defaultStore?: string;
-
-    dmsType?: string;
-
-    id?: number;
-
-    integrationAllowed?: boolean;
-
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    export enum NameEnum { 
+        Email = <any> 'Email',
+        Mail = <any> 'Mail',
+        Phone = <any> 'Phone',
+        Text = <any> 'Text',
+    }
 }

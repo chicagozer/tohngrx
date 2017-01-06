@@ -3,12 +3,12 @@ import {compose} from '@ngrx/core/compose';
 // import {storeLogger} from 'ngrx-store-logger';
 import {combineReducers} from '@ngrx/store';
 
-import heroListReducer, * as fromHeroList from './hero-list';
-import heroReducer, * as fromHero from './hero';
+import dealerListReducer, * as fromDealerList from './dealer-list';
+import dealerReducer, * as fromDealer from './dealer';
 
 export interface AppState {
-    heroes: fromHeroList.HeroListState;
-    hero: fromHero.HeroState;
+    dealers: fromDealerList.DealerListState;
+    dealer: fromDealer.DealerState;
 }
 
 // uncomment the storeLogger import and this line
@@ -18,8 +18,8 @@ export interface AppState {
 
 // export default compose(storeLogger(), combineReducers)({
 export default compose(combineReducers)({
-    heroes: heroListReducer,
-    hero: heroReducer
+    dealers: dealerListReducer,
+    dealer: dealerReducer
 });
 
 

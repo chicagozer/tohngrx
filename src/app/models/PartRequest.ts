@@ -25,46 +25,46 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface PartRequest {
     
 
-    agentType?: string;
+    /**
+     * Checks online master for PNC of part if enabled, defaults to false
+     */
+    checkOLM?: boolean;
 
-    code?: string;
+    /**
+     * Checks Parts Master when set to true, defaults to false
+     */
+    checkPartMaster?: boolean;
 
-    countryCode?: string;
+    /**
+     * Customer record's DMS id
+     */
+    customerNumber?: string;
 
-    currencyCode?: string;
+    /**
+     * Labor type of part
+     */
+    laborType?: string;
 
-    defaultMakeCode?: string;
+    /**
+     * Additional formula for determining price/manufacturing details of a part
+     */
+    lookupSource?: string;
 
-    defaultStore?: string;
+    /**
+     * OEM code
+     */
+    makeCode?: string;
 
-    dmsType?: string;
+    /**
+     * Part identifier to lookup
+     */
+    partId?: string;
 
-    id?: number;
-
-    integrationAllowed?: boolean;
-
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    /**
+     * Used to override default sale type of customer record
+     */
+    partSaleType?: string;
 }
