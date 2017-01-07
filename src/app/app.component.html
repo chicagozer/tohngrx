@@ -1,19 +1,16 @@
-
-
-
 <md-card>
-    <md-card-title>Tour of Dealers</md-card-title>
-    <md-card-content>
+  <md-card-title>Tour of Dealers</md-card-title>
+  <md-card-content>
       <google-signin
         [clientId]="googleClientId"
         (googleSignInSuccess)="onGoogleSignInSuccess($event)">
       </google-signin>
-        <button md-raised-button type="button" (click)="googleSignOut()">Sign Out</button>
-        <div class="header-bar"></div>
-        <nav>
-            <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-            <a routerLink="/dealers" routerLinkActive="active">Dealers</a>
-        </nav>
-        <router-outlet></router-outlet>
-    </md-card-content>
+      <button md-raised-button type="button" (click)="googleSignOut()">Sign Out</button>
+    <div class="header-bar"></div>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/dealers" routerLinkActive="active">Dealers</a>
+    </nav>
+    <router-outlet></router-outlet>
+  </md-card-content>
 </md-card>
