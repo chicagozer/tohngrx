@@ -40,7 +40,8 @@ export class HeroSearchService {
 
     const p: PromiseLike<SearchResponse<Dealer>> = this.client.search({
       index: 'dealers',
-      q: term
+      q: term,
+      size: 12
     });
 
     Object.defineProperty(p, 'Symbol.toStringTag', {value: 'Promise'});

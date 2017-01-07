@@ -20,6 +20,7 @@ import {HeroActions} from './actions';
 import {EffectsModule} from '@ngrx/effects';
 import {HeroEffects} from './effects';
 import {HeroFormComponent} from './hero-form.component';
+import {GoogleSignInComponent} from 'angular-google-signin';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {HeroFormComponent} from './hero-form.component';
     AppComponent,
     HeroSearchComponent,
     HeroFormComponent,
+    GoogleSignInComponent,
     routedComponents
   ],
   providers: [
