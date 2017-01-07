@@ -25,46 +25,18 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface ModelAndView {
     
 
-    agentType?: string;
+    empty?: boolean;
 
-    code?: string;
+    model?: any;
 
-    countryCode?: string;
+    modelMap?: { [key: string]: any; };
 
-    currencyCode?: string;
+    reference?: boolean;
 
-    defaultMakeCode?: string;
+    view?: models.View;
 
-    defaultStore?: string;
-
-    dmsType?: string;
-
-    id?: number;
-
-    integrationAllowed?: boolean;
-
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    viewName?: string;
 }

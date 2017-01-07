@@ -1,27 +1,27 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {Hero, Dealer} from './models';
+import {Dealer} from './models';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
-import {HeroActions} from './actions';
+import {DealerActions} from './actions';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  heroes: Observable<Hero[]>;
+  dealers: Observable<Dealer[]>;
 
   constructor(private router: Router,
               private store: Store<AppState>,
-              private heroActions: HeroActions) {
-    this.heroes = store.select('heroes');
+              private dealerActions: DealerActions) {
+    this.dealers = store.select('dealers');
   }
 
 
-  gotoDetail(hero: Hero): void {
-    let link = ['/detail', hero.id];
+  gotoDetail(dealer: Dealer): void {
+    let link = ['/detail', dealer.code];
     this.router.navigate(link);
   }
 }

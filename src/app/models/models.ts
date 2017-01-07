@@ -16,4 +16,3 @@ export * from './Timestamp';
 export * from './Transform';
 export * from './Vehicle';
 export * from './View';
-export * from './hero';

@@ -6,12 +6,12 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/observable/from';
 import {Client, SearchResponse} from 'elasticsearch';
-import {Hero} from '../models/hero';
 import {Dealer} from '../models';
 
 @Injectable()
-export class HeroSearchService {
+export class DealerSearchService {
 
   private client: Client;
 
@@ -24,19 +24,19 @@ export class HeroSearchService {
   }
 
 
-  getHero(code: string): Observable<Hero> {
+  getDealer(code: string): Observable<Dealer> {
 
     return this.query(`code:${code}`).map(list => list[0]);
   }
 
   // `name:${term}`
 
-  search(name: string): Observable<Hero[]> {
+  search(name: string): Observable<Dealer[]> {
     return this.query(`name:${name} OR code:${name}`);
   }
 
 
-  query(term: string): Observable<Hero[]> {
+  query(term: string): Observable<Dealer[]> {
 
     const p: PromiseLike<SearchResponse<Dealer>> = this.client.search({
       index: 'dealers',
@@ -46,15 +46,14 @@ export class HeroSearchService {
 
     Object.defineProperty(p, 'Symbol.toStringTag', {value: 'Promise'});
 
-    return Observable.fromPromise(p as Promise<SearchResponse<Dealer>>).map((body: SearchResponse<Dealer>) => body.hits.hits.map((x) => ({
-      id: x._source.code,
-      name: x._source.name
-    })));
+    // this is a bit weird. We are using Observable map but also hits.hits.map to transform internal array members to Dealeres
+    return Observable.fromPromise(p as Promise<SearchResponse<Dealer>>).map((body: SearchResponse<Dealer>) => body.hits.hits.map((x) => (x._source)));
+
 
     /*
      return this.http
      .get(`app/heroes/?name=${term}`)
-     .map((r: Response) => r.json().data as Hero[])
+     .map((r: Response) => r.json().data as Dealer[])
      .catch((error: any) => {
      console.error('An friendly error occurred', error);
      return Observable.throw(error.message || error);

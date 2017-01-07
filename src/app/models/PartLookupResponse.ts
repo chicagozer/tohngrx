@@ -25,46 +25,21 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface PartLookupResponse {
     
 
-    agentType?: string;
+    /**
+     * Part Identifier
+     */
+    partId?: string;
 
-    code?: string;
+    /**
+     * Originally requested part detail, may be superseded
+     */
+    requestedPart?: models.PartLookupDetail;
 
-    countryCode?: string;
-
-    currencyCode?: string;
-
-    defaultMakeCode?: string;
-
-    defaultStore?: string;
-
-    dmsType?: string;
-
-    id?: number;
-
-    integrationAllowed?: boolean;
-
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    /**
+     * Array of parts from supersession chain
+     */
+    supersessionParts?: Array<models.PartLookupDetail>;
 }

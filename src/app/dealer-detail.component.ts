@@ -4,15 +4,15 @@ import {Subscription} from 'rxjs/Subscription';
 import {Store} from '@ngrx/store';
 import {AppState} from './reducers';
 import { Observable } from 'rxjs/Observable';
-import { Hero } from './models/hero';
-import {HeroActions} from './actions';
+import { Dealer } from './models/dealer';
+import {DealerActions} from './actions';
 @Component({
-  selector: 'app-hero-detail',
-  template: require('./hero-detail.component.html')
+  selector: 'app-dealer-detail',
+  template: require('./dealer-detail.component.html')
 })
-export class HeroDetailComponent implements OnInit, OnDestroy {
+export class DealerDetailComponent implements OnInit, OnDestroy {
 
-  hero: Observable<Hero>;
+  dealer: Observable<Dealer>;
   idSub: Subscription;
   @Output() close = new EventEmitter();
   error: any;
@@ -21,9 +21,9 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
-    private heroActions: HeroActions) {
+    private dealerActions: DealerActions) {
 
-    this.hero = store.select('hero');
+    this.dealer = store.select('dealer');
   }
 
   ngOnInit(): void {
@@ -31,10 +31,10 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
       .select<string>('id')
       .subscribe(id => {
         if (id) {
-          this.store.dispatch(this.heroActions.getHero(id));
+          this.store.dispatch(this.dealerActions.getDealer(id));
           this.navigated = true;
         } else {
-          this.store.dispatch(this.heroActions.resetBlankHero());
+          this.store.dispatch(this.dealerActions.resetBlankDealer());
           this.navigated = false;
         }
       });
@@ -45,17 +45,17 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
 
-  save(hero: Hero): void {
-    if (hero.id === undefined) {
-      this.store.dispatch(this.heroActions.addHero(hero));
+  save(dealer: Dealer): void {
+    if (dealer.code === undefined) {
+      this.store.dispatch(this.dealerActions.addDealer(dealer));
     } else {
-      this.store.dispatch(this.heroActions.saveHero(hero));
+      this.store.dispatch(this.dealerActions.saveDealer(dealer));
     }
-    this.goBack(hero);
+    this.goBack(dealer);
   }
 
-  goBack(savedHero: Hero = null): void {
-    this.close.emit(savedHero);
+  goBack(savedDealer: Dealer = null): void {
+    this.close.emit(savedDealer);
      if (this.navigated) { window.history.back(); }
   }
 }

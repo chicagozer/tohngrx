@@ -1,10 +1,10 @@
 
-import {HeroService} from './hero.service';
+import {DealerService} from './dealer.service';
 
 export {
-    HeroService
+    DealerService
 };
 
 export default [
-    HeroService
+    DealerService
 ];

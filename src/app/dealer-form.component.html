@@ -1,0 +1,56 @@
+<form (ngSubmit)="save.emit(dealer)" #dealerForm="ngForm">
+    <button md-raised-button type="button" (click)="goBack.emit()">Back</button>
+    <button md-raised-button disabled type="submit">Save</button>
+    <md-input-container style="width: 100%">
+        <input md-input disabled value="{{dealer.code}}" placeholder="Dealer Code" name="code"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.name" placeholder="Dealer Name" name="name"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.agentType" placeholder="Agent Type" name="agentType"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.countryCode" placeholder="Country Code" name="countryCode"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.currencyCode" placeholder="Currency Code" name="currencyCode"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.defaultMakeCode" placeholder="Default Make" name="defaultMakeCode"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.defaultStore" placeholder="Default Store" name="defaultStore"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.dmsType" placeholder="DMS Type" name="dmsType"/>
+    </md-input-container>
+    <md-checkbox [(ngModel)]="dealer.integrationAllowed" name="integrationAllowed">Integration Allowed</md-checkbox>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.masterDealer" placeholder="Master Dealer" name="masterDealer"/>
+    </md-input-container>
+    <md-checkbox [(ngModel)]="dealer.migrationAllowed" name="migrationAllowed">Migration Allowed</md-checkbox>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.mileageUnit" placeholder="Mileage Unit" name="mileageUnit"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.poolName" placeholder="Pool Name" name="poolName"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.schemaName" placeholder="Schema Name" name="schemaName"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.state" placeholder="State" name="state"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.timeZone" placeholder="Time Zone" name="timeZone"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+        <input md-input [(ngModel)]="dealer.webKey" placeholder="Web Key" name="webKey"/>
+    </md-input-container>
+
+
+    <button md-raised-button type="button" (click)="goBack.emit()">Back</button>
+    <button md-raised-button disabled type="submit">Save</button>
+</form>
+

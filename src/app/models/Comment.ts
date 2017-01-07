@@ -25,46 +25,43 @@
 'use strict';
 import * as models from './models';
 
-export interface Dealer {
+export interface Comment {
     
 
-    agentType?: string;
+    /**
+     * person/record who created this comment maxLength = 255
+     */
+    commentAuthor?: string;
 
-    code?: string;
+    /**
+     * Date of comment in milliseconds
+     */
+    commentDate?: models.Timestamp;
 
-    countryCode?: string;
+    /**
+     * Description of comment maxLength = 4000
+     */
+    commentText?: string;
 
-    currencyCode?: string;
+    /**
+     * Type of comment
+     */
+    commentType?: Comment.CommentTypeEnum;
 
-    defaultMakeCode?: string;
+    /**
+     * ID refrencing where comment came from maxLength = 255
+     */
+    refId?: string;
 
-    defaultStore?: string;
+    /**
+     * VIN which comment relates to maxLength = 17
+     */
+    vin?: string;
+}
+export namespace Comment {
 
-    dmsType?: string;
-
-    id?: number;
-
-    integrationAllowed?: boolean;
-
-    masterDealer?: string;
-
-    migrationAllowed?: boolean;
-
-    mileageUnit?: string;
-
-    name?: string;
-
-    poolName?: string;
-
-    properties?: { [key: string]: string; };
-
-    schemaName?: string;
-
-    state?: string;
-
-    timeZone?: models.TimeZone;
-
-    transforms?: { [key: string]: models.Transform; };
-
-    webKey?: string;
+    export enum CommentTypeEnum { 
+        CUSTOMER = <any> 'CUSTOMER',
+        VEHICLE = <any> 'VEHICLE',
+    }
 }

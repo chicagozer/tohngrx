@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {GoogleSignInSuccess} from 'angular-google-signin';
 import {AppState} from './reducers';
-import {HeroActions} from './actions';
+import {DealerActions} from './actions';
 @Component({
   selector: 'app-root',
   template:  require('./app.component.html'),
@@ -14,11 +14,11 @@ export class AppComponent implements OnInit {
   profile: gapi.auth2.BasicProfile;
   constructor(
     private store: Store<AppState>,
-    private heroActions: HeroActions
+    private dealerActions: DealerActions
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(this.heroActions.loadHeroes('*'));
+    //this.store.dispatch(this.heroActions.loadHeroes(''));
   }
 
 
