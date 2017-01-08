@@ -5,10 +5,12 @@ import {combineReducers} from '@ngrx/store';
 
 import dealerListReducer, * as fromDealerList from './dealer-list';
 import dealerReducer, * as fromDealer from './dealer';
+import profileReducer, * as fromProfile from './profile';
 
 export interface AppState {
     dealers: fromDealerList.DealerListState;
     dealer: fromDealer.DealerState;
+    profile: fromProfile.ProfileState;
 }
 
 // uncomment the storeLogger import and this line
@@ -19,7 +21,8 @@ export interface AppState {
 // export default compose(storeLogger(), combineReducers)({
 export default compose(combineReducers)({
     dealers: dealerListReducer,
-    dealer: dealerReducer
+    dealer: dealerReducer,
+    profile: profileReducer
 });
 
 

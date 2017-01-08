@@ -16,6 +16,14 @@ export class DealerActions {
   static ADD_DEALER_SUCCESS = '[Dealer] Add Dealer Success';
   static DELETE_DEALER = '[Dealer] Delete Dealer';
   static DELETE_DEALER_SUCCESS = '[Dealer] Delete Dealer Success';
+  static GET_PROFILE_SUCCESS = '[Profile] Get Profile Success';
+
+  setProfile(profile: gapi.auth2.BasicProfile): Action {
+    return {
+      type: DealerActions.GET_PROFILE_SUCCESS,
+      payload: profile
+    };
+  }
 
   loadDealers(search: string): Action {
         return {
