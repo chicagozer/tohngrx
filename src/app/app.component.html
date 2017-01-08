@@ -9,7 +9,7 @@
 
   </google-signin>
   </div>
-  <button  *ngIf="(profile | async)" style="vertical-align: top;" md-raised-button type="button" (click)="googleSignOut()">Sign Out</button>
+  <button  *ngIf="(profile | async)" style="vertical-align: top;" md-raised-button type="button" (click)="googleSignOut()">Sign Out {{ (profile | async).getEmail() }}</button>
   <md-card-content>
 
     <div class="header-bar"></div>

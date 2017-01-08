@@ -13,6 +13,8 @@ import {Observable} from 'rxjs/Observable';
 export class AppComponent implements OnInit {
   title = 'Tour of Dealers';
   googleClientId: string = '634708614922-678l2unvu6pbrd2loddatun5cjsdck58.apps.googleusercontent.com';
+  googleAuthScope: string = 'email';
+  googleFetchBasicProfile: boolean = false;
   profile: Observable<gapi.auth2.BasicProfile>;
   constructor(
     private store: Store<AppState>,
