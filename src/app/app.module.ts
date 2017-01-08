@@ -18,10 +18,10 @@ import {StoreModule} from '@ngrx/store';
 import reducer from './reducers';
 import {DealerActions} from './actions';
 import {EffectsModule} from '@ngrx/effects';
-import {GoogleSignInComponent} from 'angular-google-signin';
 import {DealerEffects} from './effects';
+import {GoogleSignInComponent} from './google-signin';
 import {DealerFormComponent} from './dealer-form.component';
-
+import { LoggedInGuard} from './services/login.service';
 @NgModule({
   imports: [
     MaterialModule.forRoot(),
@@ -42,7 +42,7 @@ import {DealerFormComponent} from './dealer-form.component';
     routedComponents
   ],
   providers: [
-    DealerActions, DealerService, DealerSearchService
+    DealerActions, DealerService, DealerSearchService, LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })

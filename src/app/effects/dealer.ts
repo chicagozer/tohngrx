@@ -4,6 +4,7 @@ import {Effect, Actions} from '@ngrx/effects';
 import {DealerActions} from '../actions';
 import {DealerService} from '../services';
 import {Dealer} from '../models';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class DealerEffects {
@@ -11,7 +12,17 @@ export class DealerEffects {
         private update$: Actions,
         private dealerActions: DealerActions,
         private svc: DealerService,
+        private router: Router
     ) {}
+
+
+/* TODO fix the effect to move the navigation
+    @Effect() setProfile$ = this.update$
+      .ofType(DealerActions.GET_PROFILE_SUCCESS)
+      .map(action => action.payload)
+      .filter((profile: gapi.auth2.BasicProfile) => (profile == null))
+      .map(() => this.router.navigate(['/']));
+*/
 
     @Effect() loadDealers$ = this.update$
         .ofType(DealerActions.LOAD_DEALERS)

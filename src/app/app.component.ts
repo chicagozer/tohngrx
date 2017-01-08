@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {GoogleSignInSuccess} from 'angular-google-signin';
+import {GoogleSignInSuccess} from './google-signin';
 import {AppState} from './reducers';
 import {DealerActions} from './actions';
 import {Observable} from 'rxjs/Observable';
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     this.store.dispatch(this.dealerActions.setProfile(null));
   }
 
-
+// TODO move these to login service
    googleSignOut() {
      const auth2 = gapi.auth2.getAuthInstance();
      auth2.signOut().then( () => console.log('User signed out.'));

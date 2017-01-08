@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { DealersComponent } from './dealers.component';
 import { DealerDetailComponent } from './dealer-detail.component';
-
+import { LoggedInGuard } from './services/login.service';
 const routes: Routes = [
   {
     path: '',
@@ -12,14 +12,17 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    canActivate: [LoggedInGuard],
     path: 'dashboard',
     component: DashboardComponent
   },
   {
+    canActivate: [LoggedInGuard],
     path: 'detail/:id',
     component: DealerDetailComponent
   },
   {
+    canActivate: [LoggedInGuard],
     path: 'dealers',
     component: DealersComponent
   }
