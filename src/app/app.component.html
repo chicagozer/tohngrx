@@ -1,15 +1,19 @@
 <md-card>
+  <md-card-title-group>
   <md-card-title>Tour of Dealers</md-card-title>
 
   <div [hidden]="(profile | async)">
-  <google-signin style="display: inline-block;"
-    [clientId]="googleClientId"
-    (googleSignInSuccess)="onGoogleSignInSuccess($event)"
+    <google-signin style="display: inline-block;"
+                   [clientId]="googleClientId"
+                   (googleSignInSuccess)="onGoogleSignInSuccess($event)"
     >
 
-  </google-signin>
+    </google-signin>
   </div>
-  <button  *ngIf="(profile | async)" style="vertical-align: top;" md-raised-button type="button" (click)="googleSignOut()">Sign Out {{ (profile | async).getEmail() }}</button>
+  <button *ngIf="(profile | async)" style="vertical-align: top;" md-raised-button type="button"
+          (click)="googleSignOut()">Sign Out {{ (profile | async).getEmail() }}
+  </button>
+  </md-card-title-group>
   <md-card-content>
 
     <div class="header-bar"></div>
