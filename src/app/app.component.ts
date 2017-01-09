@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     private dealerActions: DealerActions
   ) {
     this.profile = store.select('profile');
+    store.select('profile').subscribe(x => console.log('next ' + JSON.stringify(x) ));
 
   }
 

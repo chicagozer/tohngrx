@@ -16,13 +16,11 @@ export class DealerEffects {
     ) {}
 
 
-/* TODO fix the effect to move the navigation
-    @Effect() setProfile$ = this.update$
+    @Effect({ dispatch: false }) setProfile$ = this.update$
       .ofType(DealerActions.GET_PROFILE_SUCCESS)
       .map(action => action.payload)
-      .filter((profile: gapi.auth2.BasicProfile) => (profile == null))
-      .map(() => this.router.navigate(['/']));
-*/
+    //  .filter((profile: gapi.auth2.BasicProfile) => (profile == null))
+      .map((profile) =>  this.router.navigate([ (profile) ? '/dashboard' : '/']) );
 
     @Effect() loadDealers$ = this.update$
         .ofType(DealerActions.LOAD_DEALERS)

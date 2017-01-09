@@ -21,6 +21,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {DealerEffects} from './effects';
 import {GoogleSignInComponent} from './google-signin';
 import {DealerFormComponent} from './dealer-form.component';
+import {EmptyComponent} from './empty.component';
 import { LoggedInGuard} from './services/login.service';
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { LoggedInGuard} from './services/login.service';
     GoogleSignInComponent,
     DealerSearchComponent,
     DealerFormComponent,
+      EmptyComponent,
     routedComponents
   ],
   providers: [

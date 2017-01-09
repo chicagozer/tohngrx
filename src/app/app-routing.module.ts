@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
+import { EmptyComponent} from './empty.component';
 import { DealersComponent } from './dealers.component';
 import { DealerDetailComponent } from './dealer-detail.component';
 import { LoggedInGuard } from './services/login.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+      component: EmptyComponent
   },
   {
     canActivate: [LoggedInGuard],
