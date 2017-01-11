@@ -1,7 +1,7 @@
 export * from './Comment';
 export * from './ContactMethod';
 export * from './Customer';
-export * from './Dealer';
+export * from './dealer';
 export * from './Job';
 export * from './ModelAndView';
 export * from './Part';
@@ -16,4 +16,4 @@ export * from './Timestamp';
 export * from './Transform';
 export * from './Vehicle';
 export * from './View';
-export * from './hero';
+export * from './profile';

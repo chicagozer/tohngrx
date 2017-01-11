@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import {BaseRequestOptions} from "@angular/http";
 import {Logger} from 'angular2-logger';
 import * as jwtDecode from "jwt-decode";
+import {Profile} from './models';
+
 @Component({
   selector: 'app-root',
   template:  require('./app.component.html'),
@@ -17,7 +19,7 @@ export class AppComponent implements OnInit {
   googleClientId: string = '634708614922-678l2unvu6pbrd2loddatun5cjsdck58.apps.googleusercontent.com';
   googleAuthScope: string = 'email';
   googleFetchBasicProfile: boolean = false;
-  profile: Observable<gapi.auth2.GoogleUser>;
+  profile: Observable<Profile>;
   constructor(
       private logger: Logger,
     private store: Store<AppState>,
@@ -31,7 +33,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
       this.logger.level = this.logger.Level.LOG;
-    this.store.dispatch(this.dealerActions.setProfile(null));
+    //this.store.dispatch(this.dealerActions.setProfile(null));
   }
 
 // TODO move these to login service

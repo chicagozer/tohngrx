@@ -2,12 +2,13 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import {AppState} from '../reducers';
+import { Profile} from '../models';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
 @Injectable()
 export class LoggedInGuard implements CanActivate {
-  profile: Observable<gapi.auth2.GoogleUser>;
+  profile: Observable<Profile>;
 
   constructor(private store: Store<AppState>) {
     this.profile = store.select('profile');

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Action} from '@ngrx/store';
 
-import {Dealer} from '../models';
+import {Dealer, Profile} from '../models';
 
 @Injectable()
 export class DealerActions {
@@ -18,7 +18,7 @@ export class DealerActions {
   static DELETE_DEALER_SUCCESS = '[Dealer] Delete Dealer Success';
   static GET_PROFILE_SUCCESS = '[Profile] Get Profile Success';
 
-  setProfile(profile: any): Action {
+  setProfile(profile: Profile): Action {
     return {
       type: DealerActions.GET_PROFILE_SUCCESS,
       payload: profile

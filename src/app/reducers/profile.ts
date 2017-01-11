@@ -1,9 +1,10 @@
 import {Action} from '@ngrx/store';
-
+import { Profile } from '../models';
 import {DealerActions} from '../actions';
 
-//export type ProfileState = gapi.auth2.BasicProfile;
-export type ProfileState = gapi.auth2.GoogleUser;
+export type ProfileState = Profile;
+
+
 
 const initialState: ProfileState = null;
 
