@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, ResponseOptions, BaseRequestOptions } from '@angular/http';
+import {Http,XHRBackend} from '@angular/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { MaterialModule } from '@angular/material';
 
 import './rxjs-extensions';
@@ -23,6 +22,8 @@ import {GoogleSignInComponent} from './google-signin';
 import {DealerFormComponent} from './dealer-form.component';
 import {EmptyComponent} from './empty.component';
 import { LoggedInGuard} from './services/login.service';
+import { Logger } from "angular2-logger/core";
+
 @NgModule({
   imports: [
     MaterialModule.forRoot(),
@@ -32,8 +33,7 @@ import { LoggedInGuard} from './services/login.service';
     HttpModule,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(DealerEffects),
-    InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })
+    EffectsModule.run(DealerEffects)
   ],
   declarations: [
     AppComponent,
@@ -44,7 +44,9 @@ import { LoggedInGuard} from './services/login.service';
     routedComponents
   ],
   providers: [
-    DealerActions, DealerService, DealerSearchService, LoggedInGuard
+    DealerActions, DealerService, DealerSearchService, LoggedInGuard,
+       BaseRequestOptions, Logger,
+   { provide: RequestOptions, useExisting: BaseRequestOptions } ,
   ],
   bootstrap: [AppComponent]
 })

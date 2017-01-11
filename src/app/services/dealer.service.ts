@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, Response, BaseRequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {PlatformLocation} from '@angular/common';
 import {DealerSearchService} from './dealer-search.service';
@@ -9,7 +9,7 @@ import {Dealer} from '../models';
 export class DealerService {
   private dealersUrl;  // URL to web api
 
-  constructor(private dealerSearchService: DealerSearchService, private http: Http, platformLocation: PlatformLocation) {
+  constructor(private requestOptions: BaseRequestOptions, private dealerSearchService: DealerSearchService, private http: Http, platformLocation: PlatformLocation) {
     this.dealersUrl = platformLocation.getBaseHrefFromDOM() + 'api/dealers/';
   }
 
@@ -18,7 +18,17 @@ export class DealerService {
     return this.dealerSearchService.search(term);
   }
 
+
+
   getDealer(id): Observable<Dealer> {
+
+      /*
+      console.log('fetching');
+      console.dir(this.requestOptions.headers);
+    this.http.get('http://cors-anywhere.herokuapp.com/ifconfig.co/json')
+        .map((res: Response) => console.log('reply:' + res.json()))
+        .subscribe();
+*/
 
     return this.dealerSearchService.getDealer(id);
     // return this.http.get(this.dealersUrl + id).map((res: Response) => res.json().data);

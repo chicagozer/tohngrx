@@ -1,127 +1,161 @@
 import {Component, AfterViewInit, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
-
+import {BaseRequestOptions} from '@angular/http';
+import {Logger} from 'angular2-logger';
+import *  as jwtDecode from "jwt-decode";
 export class GoogleSignInSuccess {
-  public googleUser: gapi.auth2.GoogleUser;
+    public googleUser: gapi.auth2.GoogleUser;
 
-  constructor(googleUser: gapi.auth2.GoogleUser) {
-    this.googleUser = googleUser;
-  }
+    constructor(private options: BaseRequestOptions, googleUser: gapi.auth2.GoogleUser) {
+        this.googleUser = googleUser;
+        options.headers.set('Authorization', `Bearer ${googleUser.getAuthResponse().id_token}`);
+    }
 }
 
 export class GoogleSignInFailure {
+    constructor(private options: BaseRequestOptions)
+    {
+        options.headers.delete('Authorization');
+    }
 }
 
 @Component({
-  selector: 'google-signin',
-  template: '<div [id]="id"></div>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'google-signin',
+    template: '<div [id]="id"></div>',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GoogleSignInComponent implements AfterViewInit {
-  private id: string = 'google-signin2';
 
-  // Render options
-  @Input() private scope: string;
 
-  private _width: number;
+    constructor(private logger: Logger,
+                private httpoptions: BaseRequestOptions) {
+    }
 
-  get width(): string {
-    return this._width.toString();
-  }
+    private id: string = 'google-signin2';
 
-  @Input() set width(value: string) {
-    this._width = Number(value);
-  }
+    // Render options
+    @Input() private scope: string;
 
-  private _height: number;
+    private _width: number;
 
-  get height(): string {
-    return this._height.toString();
-  }
+    get width(): string {
+        return this._width.toString();
+    }
 
-  @Input() set height(value: string) {
-    this._height = Number(value);
-    gapi.load('', '');
-  }
+    @Input() set width(value: string) {
+        this._width = Number(value);
+    }
 
-  private _longTitle: boolean;
+    private _height: number;
 
-  get longTitle(): string {
-    return this._longTitle.toString();
-  }
+    get height(): string {
+        return this._height.toString();
+    }
 
-  @Input() set longTitle(value: string) {
-    this._longTitle = Boolean(value);
-  }
+    @Input() set height(value: string) {
+        this._height = Number(value);
+        gapi.load('', '');
+    }
 
-  @Input() private theme: string;
+    private _longTitle: boolean;
 
-  // Init params
-  @Input() private clientId: string;
-  @Input() private cookiePolicy: string;
+    get longTitle(): string {
+        return this._longTitle.toString();
+    }
 
-  private _fetchBasicProfile: boolean;
+    @Input() set longTitle(value: string) {
+        this._longTitle = Boolean(value);
+    }
 
-  get fetchBasicProfile(): string {
-    return this._fetchBasicProfile.toString();
-  }
+    @Input() private theme: string;
 
-  @Input() set fetchBasicProfile(s: string) {
-    this._fetchBasicProfile = Boolean(s);
-  }
+    // Init params
+    @Input() private clientId: string;
+    @Input() private cookiePolicy: string;
 
-  @Input() private hostedDomain: string;
-  @Input() private openidRealm: string;
+    private _fetchBasicProfile: boolean;
 
-  @Output() googleSignInSuccess: EventEmitter<GoogleSignInSuccess> = new EventEmitter<GoogleSignInSuccess>();
+    get fetchBasicProfile(): string {
+        return this._fetchBasicProfile.toString();
+    }
 
-  @Output() googleSignInFailure: EventEmitter<GoogleSignInFailure> = new EventEmitter<GoogleSignInFailure>();
+    @Input() set fetchBasicProfile(s: string) {
+        this._fetchBasicProfile = Boolean(s);
+    }
 
-  ngAfterViewInit() {
-    this.auth2Init();
+    @Input() private hostedDomain: string;
+    @Input() private openidRealm: string;
 
-  }
+    @Output() googleSignInSuccess: EventEmitter<GoogleSignInSuccess> = new EventEmitter<GoogleSignInSuccess>();
 
-  private auth2Init() {
-    if (this.clientId == null)
-      throw new Error(
-        'clientId property is necessary. (<google-signin [clientId]="..."></google-signin>)');
+    @Output() googleSignInFailure: EventEmitter<GoogleSignInFailure> = new EventEmitter<GoogleSignInFailure>();
 
-    gapi.load('auth2', () => {
-      gapi.auth2.init({
-        client_id: this.clientId,
-        cookie_policy: this.cookiePolicy,
-        fetch_basic_profile: this._fetchBasicProfile,
-        hosted_domain: this.hostedDomain,
-        openid_realm: this.openidRealm
-      }).then(()  => {
-        if (gapi.auth2.getAuthInstance().isSignedIn.get())
-        {
-          this.handleSuccess(gapi.auth2.getAuthInstance().currentUser.get());
-        }
-      }, function(reason) {
-        console.error(reason); // Error!
-      }).then(() => this.renderButton());
+    ngAfterViewInit() {
+        this.auth2Init();
 
-    })};
+    }
 
-  private handleFailure() {
-    this.googleSignInFailure.next(new GoogleSignInFailure());
-  }
+    private auth2Init() {
+        if (this.clientId == null)
+            throw new Error(
+                'clientId property is necessary. (<google-signin [clientId]="..."></google-signin>)');
 
-  private handleSuccess(googleUser: gapi.auth2.GoogleUser) {
-    this.googleSignInSuccess.next(new GoogleSignInSuccess(googleUser));
-  }
+        gapi.load('auth2', () => {
+            gapi.auth2.init({
+                client_id: this.clientId,
+                cookie_policy: this.cookiePolicy,
+                scope: 'email',
+                fetch_basic_profile: false, //this._fetchBasicProfile,
+                hosted_domain: this.hostedDomain,
+                openid_realm: this.openidRealm
+            }).then(() => {
+                if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+                    // we don't seem to need to trigger this
+                    // this.handleSuccess(gapi.auth2.getAuthInstance().currentUser.get());
+                }
+            }, function (reason) {
+                this.logger.error(reason); // Error!
+            }).then(() => this.renderButton());
 
-  private renderButton() {
-    gapi.signin2.render(
-      this.id, {
-        scope: this.scope,
-        width: this._width,
-        height: this._height,
-        longtitle: this._longTitle,
-        theme: this.theme,
-        onsuccess: (googleUser: gapi.auth2.GoogleUser) => this.handleSuccess(googleUser),
-        onfailure: () => this.handleFailure()
-      });
-  }
+        })
+    };
+
+    private handleFailure() {
+        this.googleSignInFailure.next(new GoogleSignInFailure(this.httpoptions));
+    }
+
+    private dumpUser(googleUser: gapi.auth2.GoogleUser) {
+        this.logger.info('token:' + googleUser.getAuthResponse().id_token);
+        this.logger.info('expiry:' + googleUser.getAuthResponse().expires_at);
+        this.logger.info('id:' + googleUser.getId());
+        this.logger.info('is signed in:' + googleUser.isSignedIn());
+         this.logger.info('email:' + jwtDecode(googleUser.getAuthResponse().id_token).email);
+
+    }
+
+    private handleSuccess(googleUser: gapi.auth2.GoogleUser) {
+        this.dumpUser(googleUser);
+
+
+        this.googleSignInSuccess.next(new GoogleSignInSuccess(this.httpoptions,googleUser));
+
+        // register a listener to see if we get notification when the token is refreshed
+        gapi.auth2.getAuthInstance().currentUser.listen((googleUser: gapi.auth2.GoogleUser) => {
+            if (googleUser.isSignedIn()) this.handleSuccess(googleUser)
+            else this.handleFailure();
+        });
+
+    }
+
+    private renderButton() {
+        gapi.signin2.render(
+            this.id, {
+                scope: 'email', //this.scope,
+                width: this._width,
+                height: this._height,
+                longtitle: this._longTitle,
+                theme: this.theme,
+                onsuccess: (googleUser: gapi.auth2.GoogleUser) => this.handleSuccess(googleUser),
+                onfailure: () => this.handleFailure()
+            });
+    }
 }

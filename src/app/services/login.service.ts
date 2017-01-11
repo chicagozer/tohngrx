@@ -7,7 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class LoggedInGuard implements CanActivate {
-  profile: Observable<gapi.auth2.BasicProfile>;
+  profile: Observable<gapi.auth2.GoogleUser>;
 
   constructor(private store: Store<AppState>) {
     this.profile = store.select('profile');
