@@ -148,10 +148,10 @@ export class GoogleSignInComponent implements AfterViewInit {
             var time = date.toLocaleTimeString();
 
 
-            /* this.logger.info(n + ' ' + time + ':timeout listener fired');
+            this.logger.info(n + ' ' + time + ':timeout listener fired');
             this.dumpUser(googleUser);
             this.logger.info('----');
-            */
+
             if (googleUser.isSignedIn()) {
 
                 // we don't recurse - we think we get too many notifications
