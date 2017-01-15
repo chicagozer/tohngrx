@@ -125,7 +125,7 @@ export class GoogleSignInComponent implements AfterViewInit {
 
     private dumpUser(googleUser: gapi.auth2.GoogleUser) {
         this.logger.info('token:' + googleUser.getAuthResponse().id_token);
-        this.logger.info('expiry:' + googleUser.getAuthResponse().expires_at);
+        this.logger.info('expiry:' + new Date(googleUser.getAuthResponse().expires_at));
         this.logger.info('id:' + googleUser.getId());
         this.logger.info('is signed in:' + googleUser.isSignedIn());
          this.logger.info('email:' + jwtDecode(googleUser.getAuthResponse().id_token).email);
@@ -138,11 +138,38 @@ export class GoogleSignInComponent implements AfterViewInit {
 
         this.googleSignInSuccess.next(new GoogleSignInSuccess(this.httpoptions,googleUser));
 
+
+        // TODO this never got called??
         // register a listener to see if we get notification when the token is refreshed
         gapi.auth2.getAuthInstance().currentUser.listen((googleUser: gapi.auth2.GoogleUser) => {
-            if (googleUser.isSignedIn()) this.handleSuccess(googleUser)
-            else this.handleFailure();
+
+            var date = new Date();
+            var n = date.toDateString();
+            var time = date.toLocaleTimeString();
+
+
+            /* this.logger.info(n + ' ' + time + ':timeout listener fired');
+            this.dumpUser(googleUser);
+            this.logger.info('----');
+            */
+            if (googleUser.isSignedIn()) {
+
+                // we don't recurse - we think we get too many notifications
+                // this.handleSuccess(googleUser);
+                this.googleSignInSuccess.next(new GoogleSignInSuccess(this.httpoptions,googleUser));
+            }
+
+            else {
+                this.handleFailure();
+            }
         });
+
+
+        /* TODO why doesn't this work either??
+        setTimeout((googleUser) => {
+            googleUser.reloadAuthResponse().then(this.handleSuccess(googleUser));
+        }, 60000);
+        */
 
     }
 
